@@ -1,0 +1,26 @@
+tested with Boost 1.84.0 - needs Boost::serialization
+
+mkdir linux_link_error_dev
+cd linux_link_error_dev
+mkdir _build
+git clone linux_link_error
+cd _build
+
+Windows
+  cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH=[boost-path]\lib\cmake ..\linux_link_error
+
+Linux
+  cmake -DCMAKE_PREFIX_PATH=[boost-path]/lib/cmake ../linux_link_error
+
+cmake --build .
+
+builds on windows
+
+on linux with gcc i get this linker error
+
+undefined reference to `boost::serialization::version<MyType<double, 2ull> >::value'
+
+why is the linker looking for the symbol - isn't that only header based in serialize_MyType.hpp
+
+can someone explain what im doing wrong?
+
